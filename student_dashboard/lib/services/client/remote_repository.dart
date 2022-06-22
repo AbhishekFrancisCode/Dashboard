@@ -13,5 +13,5 @@ class RemoteRepository {
     _apiClient = ApiClient(httpClient: http.Client());
   }
 
-  Future<ApiResponse<Student>> getCategories() => _apiClient.getCategories();
+  Future<ApiResponse<Student>> getStudentData() => _apiClient.getStudentData();
 }

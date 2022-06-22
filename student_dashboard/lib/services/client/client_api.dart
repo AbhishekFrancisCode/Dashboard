@@ -17,7 +17,7 @@ class ApiClient {
   final http.Client httpClient;
   ApiClient({required this.httpClient});
 
-  Future<ApiResponse<Student>> getCategories() async {
+  Future<ApiResponse<Student>> getStudentData() async {
     const url = "https://api.mocklets.com/p68289/screentime";
     final response = await _getResponse(url);
     if (response.statusCode == 200) {
