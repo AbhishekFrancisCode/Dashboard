@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:student_dashboard/config.dart';
 import 'package:student_dashboard/model/student.dart';
 import 'package:student_dashboard/services/client/api_response.dart';
 import 'package:student_dashboard/services/client/failure.dart';
@@ -18,12 +19,12 @@ class ApiClient {
   ApiClient({required this.httpClient});
 
   Future<ApiResponse<Student>> getStudentData() async {
-    const url = "https://api.mocklets.com/p68289/screentime";
-    final response = await _getResponse(url);
+    final url = config.baseUrl;
+    final response = await _getResponse(url!);
     if (response.statusCode == 200) {
-      final json = jsonDecode(utf8.decode(response.bodyBytes));
+      final json = jsonDecode(response.body);
       final list = Student.fromJson(json);
-      return ApiResponse(data: list, message: '');
+      return ApiResponse(data: list);
     } else {
       final code = response.statusCode;
       throw Failure("Something went wrong ($code). Please retry!");

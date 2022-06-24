@@ -1,118 +1,119 @@
-import 'dart:convert';
-
-Student studentFromJson(String str) => Student.fromJson(json.decode(str));
-
-String studentToJson(Student data) => json.encode(data.toJson());
-
 class Student {
-  Student({
-    required this.success,
-    required this.data,
-  });
+  bool? success;
+  Data? data;
 
-  final bool success;
-  final Data data;
+  Student({this.success, this.data});
 
-  factory Student.fromJson(Map<String, dynamic> json) => Student(
-        success: json["success"],
-        data: Data.fromJson(json["data"]),
-      );
+  Student.fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+  }
 
-  Map<String, dynamic> toJson() => {
-        "success": success,
-        "data": data.toJson(),
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['success'] = success;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    return data;
+  }
 }
 
 class Data {
-  Data({
-    required this.screenTime,
-    required this.freeTime,
-    required this.devices,
-  });
+  ScreenTimes? screenTime;
+  FreeTime? freeTime;
+  List<Devices>? devices;
 
-  final ScreenTime screenTime;
-  final FreeTime freeTime;
-  final List<Device> devices;
+  Data({this.screenTime, this.freeTime, this.devices});
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        screenTime: ScreenTime.fromJson(json["screenTime"]),
-        freeTime: FreeTime.fromJson(json["freeTime"]),
-        devices:
-            List<Device>.from(json["devices"].map((x) => Device.fromJson(x))),
-      );
+  Data.fromJson(Map<String, dynamic> json) {
+    screenTime = json['screenTime'] != null
+        ? ScreenTimes.fromJson(json['screenTime'])
+        : null;
+    freeTime =
+        json['freeTime'] != null ? FreeTime.fromJson(json['freeTime']) : null;
+    if (json['devices'] != null) {
+      devices = <Devices>[];
+      json['devices'].forEach((v) {
+        devices!.add(Devices.fromJson(v));
+      });
+    }
+  }
 
-  Map<String, dynamic> toJson() => {
-        "screenTime": screenTime.toJson(),
-        "freeTime": freeTime.toJson(),
-        "devices": List<dynamic>.from(devices.map((x) => x.toJson())),
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (screenTime != null) {
+      data['screenTime'] = screenTime!.toJson();
+    }
+    if (freeTime != null) {
+      data['freeTime'] = freeTime!.toJson();
+    }
+    if (devices != null) {
+      data['devices'] = devices!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
-class Device {
-  Device({
-    required this.name,
-    required this.usage,
-  });
+class ScreenTimes {
+  int? clasz;
+  int? study;
+  int? free;
+  int? total;
 
-  final String name;
-  final int usage;
+  ScreenTimes({this.clasz, this.study, this.free, this.total});
 
-  factory Device.fromJson(Map<String, dynamic> json) => Device(
-        name: json["name"],
-        usage: json["usage"],
-      );
+  ScreenTimes.fromJson(Map<String, dynamic> json) {
+    clasz = json['class'];
+    study = json['study'];
+    free = json['free'];
+    total = json['total'];
+  }
 
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "usage": usage,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['class'] = clasz;
+    data['study'] = study;
+    data['free'] = free;
+    data['total'] = total;
+    return data;
+  }
 }
 
 class FreeTime {
-  FreeTime({
-    required this.limit,
-    required this.usage,
-  });
+  int? limit;
+  int? usage;
 
-  final int limit;
-  final int usage;
+  FreeTime({this.limit, this.usage});
 
-  factory FreeTime.fromJson(Map<String, dynamic> json) => FreeTime(
-        limit: json["limit"],
-        usage: json["usage"],
-      );
+  FreeTime.fromJson(Map<String, dynamic> json) {
+    limit = json['limit'];
+    usage = json['usage'];
+  }
 
-  Map<String, dynamic> toJson() => {
-        "limit": limit,
-        "usage": usage,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['limit'] = limit;
+    data['usage'] = usage;
+    return data;
+  }
 }
 
-class ScreenTime {
-  ScreenTime({
-    required this.screenTimeClass,
-    required this.study,
-    required this.free,
-    required this.total,
-  });
+class Devices {
+  String? name;
+  int? usage;
 
-  final int screenTimeClass;
-  final int study;
-  final int free;
-  final int total;
+  Devices({this.name, this.usage});
 
-  factory ScreenTime.fromJson(Map<String, dynamic> json) => ScreenTime(
-        screenTimeClass: json["class"],
-        study: json["study"],
-        free: json["free"],
-        total: json["total"],
-      );
+  Devices.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    usage = json['usage'];
+  }
 
-  Map<String, dynamic> toJson() => {
-        "class": screenTimeClass,
-        "study": study,
-        "free": free,
-        "total": total,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['usage'] = usage;
+    return data;
+  }
 }

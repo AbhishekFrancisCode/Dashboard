@@ -1,8 +1,11 @@
 class ApiResponse<T> {
   T data;
   final bool isSuccess;
-  final String message;
+  final String? message;
 
-  ApiResponse(
-      {this.isSuccess = true, required this.message, required this.data});
+  ApiResponse({
+    required this.data,
+    this.isSuccess = true,
+    this.message,
+  });
 }

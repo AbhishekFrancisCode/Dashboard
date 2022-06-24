@@ -4,7 +4,9 @@ class ProgressIndicatorWidget extends StatelessWidget {
   final String message;
   //final double height;
 
-  ProgressIndicatorWidget({this.message = "Loading, please wait..."});
+  const ProgressIndicatorWidget(
+      {Key? key, this.message = "Loading, please wait..."})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
