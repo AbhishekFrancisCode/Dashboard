@@ -12,7 +12,7 @@ class CategoriesRow extends StatelessWidget {
         builder: (context, state) {
       if (state is ScreenTimeIntial) {
         return Flexible(
-          flex: 2,
+          flex: 1,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[

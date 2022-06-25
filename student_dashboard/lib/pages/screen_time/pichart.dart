@@ -28,7 +28,7 @@ class PieChart extends CustomPainter {
 
     double total = categories[3];
     double startRadian = -pi / 2;
-    for (var i = 0; i < categories.length; i++) {
+    for (var i = 0; i < categories.length - 1; i++) {
       final currentCategory = categories.elementAt(i);
       final sweepRadian = currentCategory / total * 2 * pi;
       paint.color = kColorsPicker.elementAt(i % categories.length);

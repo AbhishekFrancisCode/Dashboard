@@ -33,3 +33,10 @@ String getTime(int total) {
   }
   return components.join();
 }
+
+needSpsce(BuildContext context) {
+  return SizedBox(
+    height: 25,
+    width: MediaQuery.of(context).size.width,
+  );
+}

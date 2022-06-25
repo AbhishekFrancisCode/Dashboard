@@ -13,7 +13,7 @@ class PieChartView<T> extends StatelessWidget {
         builder: (context, state) {
       if (state is ScreenTimeIntial) {
         return Flexible(
-          flex: 4,
+          flex: 3,
           child: LayoutBuilder(
             builder: (context, constraints) => Container(
               child: Stack(
