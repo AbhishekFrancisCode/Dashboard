@@ -16,7 +16,7 @@ class CategoriesRow extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              getColumn('class', state.clasz, Colors.blue[800]),
+              getColumn('Class', state.clasz, Colors.blue[800]),
               getColumn('Study', state.study, Colors.orange[800]),
               getColumn('Free-time', state.free, Colors.green[800]),
             ],

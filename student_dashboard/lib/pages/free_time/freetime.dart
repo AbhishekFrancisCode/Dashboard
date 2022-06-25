@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_dashboard/pages/free_time/bloc/free_time_bloc.dart';
 import 'package:student_dashboard/pages/free_time/freetime_view.dart';
 
+// ignore: must_be_immutable
 class FreeTime extends StatelessWidget {
   int usage;
   int limit;

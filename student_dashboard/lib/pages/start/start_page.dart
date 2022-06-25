@@ -26,6 +26,7 @@ class MyStartPage extends StatelessWidget {
               if (state is StartLoadedState) {
                 final screentimeDataExtract = state.student.data?.screenTime;
                 final freentimeDataExtract = state.student.data?.freeTime;
+                final devicelistDataExtract = state.student.data?.devices;
                 return SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
@@ -45,7 +46,9 @@ class MyStartPage extends StatelessWidget {
                           )),
                       BlocProvider(
                           create: (context) => DeviceListsBloc(),
-                          child: DeviceList()),
+                          child: DeviceList(
+                            deviceList: devicelistDataExtract!,
+                          )),
                     ],
                   ),
                 );
